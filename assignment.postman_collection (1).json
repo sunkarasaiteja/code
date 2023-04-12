@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "e64e9272-d94a-487d-8ff1-1c5492e2a3ea",
+		"name": "assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17990005"
+	},
+	"item": [
+		{
+			"name": "Assignment",
+			"item": [
+				{
+					"name": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6 907d289e10d714a6e88b30761fae22. ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"status code\", function () {      ",
+									" pm.response.to.have.status(200);",
+									"  });",
+									"",
+									"pm.test(\"check lat and lon values\", function () {",
+									"    let data=pm.response.json();",
+									"\tpm.expect(data.coord.lat).to.eq(51.51)",
+									"    pm.expect(data.coord.lon).to.eq(-0.13)",
+									"})",
+									"",
+									"",
+									"pm.test(\"validating weather\", function () {",
+									"    let jsonData=pm.response.json();",
+									"\tpm.expect(jsonData.name).to.eq(\"London\");",
+									"    pm.expect(jsonData.weather).exist;",
+									"    pm.expect(typeof jsonData.weather).to.eq('object');",
+									"    pm.expect(jsonData.weather.length).to.gt(0);",
+									"})",
+									"",
+									"pm.test(\"validating temperature\", function () {",
+									"    let jsonData=pm.response.json();",
+									"\tpm.expect(jsonData.main).exist;",
+									"    pm.expect(typeof jsonData.main).to.eq(\"object\");",
+									"    pm.expect(jsonData.main.temp).exist;",
+									"    pm.expect(jsonData.main.temp_min).exist;",
+									"    pm.expect(jsonData.main.temp_max).exist;",
+									"})",
+									"",
+									"pm.test(\"validating date and wind\", function () {",
+									"    let jsonData=pm.response.json();",
+									"\tpm.expect(jsonData.dt).exist;",
+									"    pm.expect(typeof jsonData.dt).to.eq(\"number\");",
+									"    pm.expect(jsonData.wind).exist;",
+									"\tpm.expect(typeof jsonData.wind).to.eq(\"object\");",
+									"    pm.expect(jsonData.wind.speed).exist;",
+									"    pm.expect(jsonData.wind.deg).exist;",
+									"})",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6 907d289e10d714a6e88b30761fae22. \n\n",
+							"protocol": "https",
+							"host": [
+								"samples",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "London,uk"
+								},
+								{
+									"key": "appid",
+									"value": "b6 907d289e10d714a6e88b30761fae22. \n\n"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
